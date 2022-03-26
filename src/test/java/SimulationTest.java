@@ -24,7 +24,7 @@ public class SimulationTest {
         Simulation game = new Simulation(new Vehicle(5000));
         int okay = game.runSimulation(burnSource);
         // Assert.assertEquals(Vehicle.CRASHED, okay); // original
-        Assert.assertEquals(Vehicle.DEAD, okay); // added
+        Assert.assertEquals(Vehicle.DEAD, okay); // added - ?this would be correct given impact velocity?
     }
 
     @Test
