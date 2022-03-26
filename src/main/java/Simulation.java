@@ -21,7 +21,8 @@ public class Simulation {
         s = s + "Elon Musk has sent a really expensive Starship to land on Mars.\n";
         s = s + "The on-board computer has failed! You have to land the spacecraft manually.\n";
         s = s + "Set burn rate of retro rockets to any value between 0 (free fall) and 200\n";
-        s = s + "(maximum burn) kilo per second. Set burn rate every 10 seconds.\n"; /* That's why we have to go with 10 second-steps. */
+        s = s + "(maximum burn) kilo per second. Set burn rate every 10 seconds.\n"; /* That's why we
+        have to go with 10 second-steps. */
         s = s + "You must land at a speed of 2 or 1. Good Luck!\n\n";
         return s;
     }
@@ -62,20 +63,32 @@ public class Simulation {
             }
             burnInterval++;
             if (burnInterval % 9 == 0) {
-                printString(getHeader());
+                printString(getHeader()); // prints header every 9 lines
             }
         }
-        printString(vehicle.checkFinalStatus());
-        if (status != null) {
-            return status.getStatus();
+        printString(vehicle.checkFinalStatus()); // I think it's correct up through here... EXCEPT last 0 line from array isn't printing
+        if (vehicle.checkFinalStatus().equals(vehicle.dead)) { // I added...
+            return -3;
+        } else if (vehicle.checkFinalStatus().equals(vehicle.crashed)) { // I added...
+            return -2;
+        } else if (vehicle.checkFinalStatus().equals(vehicle.emptyfuel)) { // I added...
+            return -1;
+        } else if (vehicle.checkFinalStatus().equals(vehicle.success)) { // I added...
+            return -0;
         }
+//        if (status != null) {
+//            return status.getStatus(); // status not set on DescentEvent page
+//        }
         return -1;
     }
 
     public static void main(String[] args) {
         // create a new Simulation object with a random starting altitude
+        Simulation simulation = new Simulation(new Vehicle(randomaltitude()));
         // create a new BurnInputStream
+        BurnInputStream inputStream = new BurnInputStream();
         // pass the new BurnInputStream to the runSimulation method
+        simulation.runSimulation(inputStream);
     }
 
 }
