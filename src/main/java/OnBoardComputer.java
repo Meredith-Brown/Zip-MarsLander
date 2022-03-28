@@ -7,5 +7,3 @@ public class OnBoardComputer implements BurnStream {
         return burn;
     }
 }
-
-// a = (speed * speed)/(2 * altitude) +

@@ -1,4 +1,4 @@
-public class Vehicle { // TODO - write tests!!!
+public class Vehicle {
 
     public Vehicle(int InitialAltitude) {
         this.Altitude = InitialAltitude;
